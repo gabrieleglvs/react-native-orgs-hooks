@@ -12,6 +12,7 @@ export default function App() {
 
 const estilos = StyleSheet.create({
   AndroidSafeArea: {
+    flex: 1,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
   }
 })
