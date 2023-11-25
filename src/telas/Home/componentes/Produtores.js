@@ -1,13 +1,27 @@
-import React, { useEffect } from "react";
-import { Text } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { FlatList, Text } from 'react-native';
 
 import { carregaProdutores } from "../../../servicos/carregaDados";
 
 export default function Produtores() {
+    const [titulo, setTitulo] = useState('');
+    //[estado, método que altera o estado]
+    const [lista, setLista] = useState([]);
+    
     useEffect(() => {
         const retorno = carregaProdutores();
+        setTitulo(retorno.titulo);
+        setLista(retorno.lista);
         console.log(retorno);
-    }, []); //quando temos um arrays vazio a função carrega assim o que o componente é carregado
-    
-    return <Text>Produtores</Text>
+    }, []);
+
+    const TopoLista = () => {
+        return <Text>{ titulo }</Text>
+    }
+
+    return <FlatList
+        data={lista}
+        renderItem={({item: { nome }}) => <Text>{ nome }</Text>}
+        ListHeaderComponent={TopoLista}
+    />
 }
