@@ -3,7 +3,7 @@ import { FlatList, Text, StyleSheet } from 'react-native';
 
 import { carregaProdutores } from "../../../servicos/carregaDados";
 
-export default function Produtores() {
+export default function Produtores({ topo: Topo }) {
     const [titulo, setTitulo] = useState('');
     //[estado, método que altera o estado]
     const [lista, setLista] = useState([]);
@@ -16,7 +16,10 @@ export default function Produtores() {
     }, []);
 
     const TopoLista = () => {
-        return <Text style={estilos.titulo}>{ titulo }</Text>
+        return <>
+            <Topo />
+            <Text style={estilos.titulo}>{ titulo }</Text>
+        </>
     }
 
     return <FlatList
